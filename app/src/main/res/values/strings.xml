@@ -2,4 +2,5 @@
     <string name="app_name">Popular Movies</string>
 
     <string name="api_key">api_key=</string>
+    <string name="details_page">Details</string>
 </resources>
