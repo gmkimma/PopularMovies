@@ -1,6 +1,12 @@
 <resources>
+    <!-- Activity Titles -->
     <string name="app_name">Popular Movies</string>
+    <string name="details_page">Movie Details</string>
 
+    <!-- Insert your API key -->
     <string name="api_key">api_key=</string>
-    <string name="details_page">Details</string>
+
+    <!-- Content Description -->
+    <string name="movie_image">movie_image</string>
+
 </resources>

@@ -14,7 +14,7 @@ import android.widget.ImageView;
 public class MainActivity extends AppCompatActivity {
 
     public Integer [] mThumbIds = {
-            R.drawable.interstellar, R.drawable.interstellar,
+            R.drawable.interstellar, R.drawable.chappie,
             R.drawable.interstellar, R.drawable.interstellar,
             R.drawable.interstellar, R.drawable.interstellar,
             R.drawable.interstellar, R.drawable.interstellar,
