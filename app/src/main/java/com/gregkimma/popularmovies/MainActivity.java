@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +30,32 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
+
+        mMovieRecyclerViewAdapter = new MovieRecyclerViewAdapter(MainActivity.this,
+                new ArrayList<Movie>());
+        mRecyclerView.setAdapter(mMovieRecyclerViewAdapter);
+        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this,
+                mRecyclerView, new RecyclerItemClickListener.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(View view, int position) {
+//                Toast.makeText(MainActivity.this, "Normal tap", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, Details.class);
+                intent.putExtra("MOVIE_TRANSFER", mMovieRecyclerViewAdapter.getMovie(position));
+                startActivity(intent);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+                Toast.makeText(MainActivity.this, "Long tap", Toast.LENGTH_SHORT).show();
+            }
+        }));
 
         updateMovies();
 
@@ -96,8 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
             protected void onPostExecute(String webData) {
                 super.onPostExecute(webData);
-                mMovieRecyclerViewAdapter = new MovieRecyclerViewAdapter(MainActivity.this, getMovies());
-                mRecyclerView.setAdapter(mMovieRecyclerViewAdapter);
+                mMovieRecyclerViewAdapter.loadNewData(getMovies());
             }
         }
 

@@ -45,4 +45,13 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieImageVie
     public int getItemCount() {
         return (null != mMoviesList ? mMoviesList.size() : 0);
     }
+
+    public void loadNewData(List<Movie> newMovies) {
+        mMoviesList = newMovies;
+        notifyDataSetChanged();
+    }
+
+    public Movie getMovie(int position) {
+        return (null != mMoviesList ? mMoviesList.get(position) : null);
+    }
 }

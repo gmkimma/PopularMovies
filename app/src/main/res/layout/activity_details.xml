@@ -14,29 +14,27 @@
         <TextView
             android:id="@+id/movie_title"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:background="#3F827B"
             android:paddingLeft="20dp"
-            android:paddingTop="25dp"
-            android:text="Chappie"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/white"
-            android:textSize="65sp"/>
+            android:textSize="55sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="5dp"
-            android:paddingLeft="15dp"
-            android:paddingTop="15dp">
+            android:paddingLeft="15dp">
 
             <ImageView
                 android:id="@+id/movie_detail_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="180dp"
+                android:layout_height="300dp"
                 android:contentDescription="@string/movie_image"
-                android:src="@drawable/chappie"/>
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -50,16 +48,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp"
-                    android:text="2015"
                     android:textColor="#616161"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="8.1/10"
                     android:textColor="@android:color/black"
                     android:textSize="25sp"/>
 
@@ -71,8 +67,9 @@
             android:id="@+id/synopsis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:text="In the near future, a mechanized police force patrols the streets and deals with lawbreakers -- but now, the people are fighting back. When one police droid is stolen and given new programming, he acquires the ability to feel and think for himself. While the robot, dubbed, puzzles out human behavior, the authorities begin to see him as a danger to mankind and order; they will stop at nothing to ensure that Chappie is the last of his kind."/>
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:padding="15dp"/>
 
     </LinearLayout>
 

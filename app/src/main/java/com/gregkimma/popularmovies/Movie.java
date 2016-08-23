@@ -1,6 +1,11 @@
 package com.gregkimma.popularmovies;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
     private String mTitle;
     private String mSynopsis;
     private String mRating;
@@ -13,6 +18,10 @@ public class Movie {
         mRating = rating;
         mReleaseDate = releaseDate;
         mImage = image;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public String getTitle() {
