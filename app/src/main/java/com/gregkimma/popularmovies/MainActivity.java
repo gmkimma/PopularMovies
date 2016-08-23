@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +13,9 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,13 +33,18 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.interstellar, R.drawable.interstellar
     };
 
+    private static final String LOG = "MainActivity";
+    private List<Movie> mMovieList = new ArrayList<>();
+    private RecyclerView mRecyclerView;
+    private MovieRecyclerViewAdapter mMovieRecyclerViewAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GetRawData theRawData = new GetRawData("http://api.themoviedb.org/3/movie/popular?api_key=" + getString(R.string.api_key));
-        theRawData.execute();
+        GetMovieJSONData jsonData = new GetMovieJSONData(getString(R.string.pref_sort_popular_value), getString(R.string.api_key));
+        jsonData.execute();
 
 
         GridView gridview = (GridView) findViewById(R.id.gridView);
@@ -75,6 +83,30 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public class ProcessMovies extends GetMovieJSONData {
+
+        public ProcessMovies(String sortCriteria, String apiKey) {
+            super(sortCriteria, apiKey);
+        }
+
+        public void execute() {
+            super.execute();
+            ProcessData processData = new ProcessData();
+            processData.execute();
+        }
+
+        public class ProcessData extends DownloadJsonData {
+
+            protected void onPostExecute(String webData) {
+                super.onPostExecute(webData);
+                mMovieRecyclerViewAdapter = new MovieRecyclerViewAdapter(MainActivity.this, getMovies());
+                mRecyclerView.setAdapter(mMovieRecyclerViewAdapter);
+            }
+        }
+
+    }
+
 
     public class ImageAdapter extends BaseAdapter {
         private Context mContext;

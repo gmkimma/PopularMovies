@@ -37,6 +37,10 @@ public class GetRawData {
         return mDownloadStatus;
     }
 
+    public void setRawUrl(String rawUrl) {
+        this.mRawUrl = rawUrl;
+    }
+
     public void execute() {
         this.mDownloadStatus = DownloadStatus.PROCESSING;
         DownloadRawData downloadRawData = new DownloadRawData();
