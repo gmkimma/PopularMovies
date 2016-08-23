@@ -52,7 +52,7 @@ public class GetRawData {
         @Override
         protected void onPostExecute(String webData) {
             mData = webData;
-            Log.v(TAG, "Data returned was: " + mData);
+//            Log.v(TAG, "Data returned was: " + mData);
             if (mData == null) {
                 if (mRawUrl == null) {
                     mDownloadStatus = DownloadStatus.NOT_INITIALIZED;

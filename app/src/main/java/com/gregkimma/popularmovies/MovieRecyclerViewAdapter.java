@@ -2,13 +2,16 @@ package com.gregkimma.popularmovies;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
-public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MoiveImageViewHolder>{
+public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieImageViewHolder>{
 
     private List<Movie> mMoviesList;
     private Context mContext;
@@ -20,11 +23,22 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MoiveImageVie
     }
 
     @Override
-    public MoiveImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MovieImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse, null);
-        MoiveImageViewHolder moiveImageViewHolder = new MoiveImageViewHolder(view);
-        return moiveImageViewHolder;
+        MovieImageViewHolder movieImageViewHolder = new MovieImageViewHolder(view);
+        return movieImageViewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(MovieImageViewHolder holder, int position) {
+
+        Movie movieItem = mMoviesList.get(position);
+        Log.d("Recyclerview", "Processing: " + movieItem.getTitle() + "-->" + Integer.toString(position));
+        Picasso.with(mContext).load(movieItem.getImage())
+                .error(R.drawable.placeholder)
+                .placeholder(R.drawable.placeholder)
+                .into(holder.thumbnail);
     }
 
     @Override

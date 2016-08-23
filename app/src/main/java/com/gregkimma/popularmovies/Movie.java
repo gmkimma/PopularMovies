@@ -32,6 +32,7 @@ public class Movie {
     }
 
     public String getImage() {
+        mImage = "http://image.tmdb.org/t/p/w185" + mImage;
         return mImage;
     }
 
