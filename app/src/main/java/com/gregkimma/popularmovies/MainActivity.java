@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        GetRawData theRawData = new GetRawData("http://api.themoviedb.org/3/movie/popular?api_key=" + getString(R.string.api_key));
+        theRawData.execute();
+
 
         GridView gridview = (GridView) findViewById(R.id.gridView);
         gridview.setAdapter(new ImageAdapter(this));
@@ -104,8 +109,5 @@ public class MainActivity extends AppCompatActivity {
             imageView.setImageResource(mThumbIds[position]);
             return imageView;
         }
-
-        // references to our images
-
     }
 }
